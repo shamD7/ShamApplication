@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/tassskkkkkkkkkk"
+    android:backgroundTint="@color/white"
+    tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="220dp"
-        android:layout_height="82dp"
-        android:backgroundTint="#B388FF"
-        android:shadowColor="#2D569A"
-        android:text="sham"
-        android:textColor="#FF82AA"
-        android:textColorLink="#FC80BA"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="203dp" />
-
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="402dp"
+        android:layout_height="478dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tassskkkkkkkkkk" />
 </android.support.constraint.ConstraintLayout>
