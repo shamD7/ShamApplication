@@ -36,9 +36,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("SD","onPause" );
+        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         Log.d("SD","onStop" );
         Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("SD","onDestroy" );
+        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+
     }
 }
