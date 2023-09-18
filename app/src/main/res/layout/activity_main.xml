@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tassskkkkkkkkkk"
+    android:background="#F7F7F7"
     android:backgroundTint="@color/white"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="402dp"
-        android:layout_height="478dp"
+        android:layout_width="408dp"
+        android:layout_height="579dp"
         android:layout_marginTop="4dp"
+        android:background="#F8F8F8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tassskkkkkkkkkk" />
+
 </android.support.constraint.ConstraintLayout>
