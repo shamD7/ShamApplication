@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity1 extends AppCompatActivity
 {
 
     @Override
