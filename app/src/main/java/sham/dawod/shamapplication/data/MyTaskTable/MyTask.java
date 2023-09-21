@@ -23,6 +23,8 @@ public class MyTask
     public long userId;
     /**زمن بناء المهمة*/
     public long time ;
+    /**هل تمت المهمة*/
+    public boolean isCompleted;
 
     @Override
     public String toString() {
@@ -32,6 +34,8 @@ public class MyTask
                 ", text='" + text + '\'' +
                 ", subjId=" + subjId +
                 ", userId=" + userId +
+                ", time=" + time +
+                ", isCompleted=" + isCompleted +
                 '}';
     }
 }
