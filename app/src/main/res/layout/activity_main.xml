@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F7F7F7"
     android:backgroundTint="@color/white"
-    tools:context=".MainActivity1">
+    tools:context=".SplashScreen">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,9 @@
             android:layout_width="236dp"
             android:layout_height="76dp"
             android:layout_gravity="center"
-            android:text="Button" />
+            android:backgroundTint="#EC680E"
+            android:shadowColor="#ED750C"
+            android:text="NEXT" />
 
     </LinearLayout>
 

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MainActivity1 extends AppCompatActivity
+public class SplashScreen extends AppCompatActivity
 {
 
     @Override
