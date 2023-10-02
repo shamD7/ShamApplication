@@ -16,6 +16,7 @@
             android:id="@+id/btnSAVE"
             android:layout_width="match_parent"
             android:layout_height="66dp"
+            android:layout_margin="8dp"
             android:backgroundTint="#EC680E"
             android:text="SAVE" />
 
@@ -24,8 +25,10 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
+                android:layout_margin="8dp"
                 android:hint="E-mail/Username"
                 android:inputType="textEmailAddress"
                 android:textSize="20sp" />
@@ -39,6 +42,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
+                android:layout_margin="8dp"
                 android:hint="password"
                 android:inputType="textPassword|numberPassword"
                 android:textSize="20sp" />
@@ -55,6 +59,7 @@
                 android:id="@+id/etRepassword"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
+                android:layout_margin="8dp"
                 android:hint="re-password"
                 android:inputType="textPassword|numberPassword"
                 android:textSize="20sp" />
@@ -70,6 +75,7 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="59dp"
+                android:layout_margin="8dp"
                 android:hint="name"
                 android:inputType="text"
                 android:textSize="20sp" />
@@ -85,6 +91,7 @@
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
+                android:layout_margin="8dp"
                 android:hint="phone"
                 android:inputType="phone"
                 android:textSize="20sp" />
