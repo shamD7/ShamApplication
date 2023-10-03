@@ -13,11 +13,9 @@ public class MySubject
     public String title;
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "MySubject{" +
-                "key_id=" + key_id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 '}';
     }
 }
