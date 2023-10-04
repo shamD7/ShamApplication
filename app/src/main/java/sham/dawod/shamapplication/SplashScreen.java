@@ -6,6 +6,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import sham.dawod.shamapplication.data.AppDatabase;
+import sham.dawod.shamapplication.data.MySubjectTable.MySubject;
+import sham.dawod.shamapplication.data.MySubjectTable.MySubjectQuery;
+
 public class SplashScreen extends AppCompatActivity
 {
 
@@ -17,6 +21,22 @@ public class SplashScreen extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Log.d("SD","onCreate" );
         Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+
+        //1. بناء قاعدة بيانات وارجاع مؤشر عليها
+        AppDatabase db =AppDatabase.getDB(getApplicationContext());
+        //1.مؤشر لكائن عمليات الجدول ا
+        MySubjectQuery dbMySubjectQuery = db.getMySubjectQuery();
+        //3. بناء كائن من نوع جدول
+        MySubject s1=new MySubject();
+        s1.title="Math";
+        MySubject s2=new MySubject();
+        s2.title="Computers";
+        //4.اضافة كائن للجدول
+        dbMySubjectQuery.insertAll(s1);
+        dbMySubjectQuery.insertAll(s2);
+
+
+
 
     }
 
