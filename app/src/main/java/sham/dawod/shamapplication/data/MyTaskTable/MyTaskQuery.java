@@ -6,9 +6,9 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
-
-@Dao  /** واجهة استعلامات على جدول المعطيات*/
-public interface MyTaskQuery<list>
+/** واجهة استعلامات على جدول المعطيات*/
+@Dao
+public interface MyTaskQuery
 {
     /**
      * اعادة جميع معطيات جدول المهمات

@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 import sham.dawod.shamapplication.data.AppDatabase;
 import sham.dawod.shamapplication.data.MySubjectTable.MySubject;
 import sham.dawod.shamapplication.data.MySubjectTable.MySubjectQuery;
@@ -25,17 +27,23 @@ public class SplashScreen extends AppCompatActivity
         //1. بناء قاعدة بيانات وارجاع مؤشر عليها
         AppDatabase db =AppDatabase.getDB(getApplicationContext());
         //1.مؤشر لكائن عمليات الجدول ا
-        MySubjectQuery dbMySubjectQuery = db.getMySubjectQuery();
+        MySubjectQuery MySubjectQuery = db.getMySubjectQuery();
         //3. بناء كائن من نوع جدول
         MySubject s1=new MySubject();
         s1.title="Math";
         MySubject s2=new MySubject();
         s2.title="Computers";
         //4.اضافة كائن للجدول
-        dbMySubjectQuery.insertAll(s1);
-        dbMySubjectQuery.insertAll(s2);
-
-
+        MySubjectQuery.insertAll(s1);
+        MySubjectQuery.insertAll(s2);
+        //5.فحص هل تم حفظ ما سبق(استخراج وطباعة جميع معطيات جدول المواضيع
+        List<MySubject> allSubject = MySubjectQuery.getAllSubject();
+        for (MySubject s:allSubject)
+             {
+                 Log.d("sham",s.title);
+                 Toast.makeText(this,s.title,Toast.LENGTH_LONG);
+            
+        }
 
 
     }
@@ -57,21 +65,24 @@ public class SplashScreen extends AppCompatActivity
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         Log.d("SD","onPause" );
         Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
         Log.d("SD","onStop" );
         Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         Log.d("SD","onDestroy" );
         Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
