@@ -9,16 +9,37 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnSAVE"
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:layout_margin="8dp"
-            android:backgroundTint="#EC680E"
-            android:text="SAVE" />
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnSAVE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#EC680E"
+                android:text="SAVE"
+                android:textSize="24dp"/>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#EC680E"
+                android:text="CANCEL"
+                android:textSize="24dp" />
+
+
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         //456456456465
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.splashscreen);
         Log.d("SD","onCreate" );
         Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 

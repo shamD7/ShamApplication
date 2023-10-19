@@ -1,4 +1,4 @@
-package sham.dawod.shamapplication.data;
+package sham.dawod.shamapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,9 +6,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import sham.dawod.shamapplication.R;
-import sham.dawod.shamapplication.data.MySubjectTable.MySubject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity3 extends AppCompatActivity {
 //spnr1 تعريف لصفة الكائن المرئي
     private Spinner spnrSubject;
 
