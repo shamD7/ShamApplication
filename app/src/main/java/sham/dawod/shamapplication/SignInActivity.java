@@ -17,8 +17,8 @@ public class SignInActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sigh_up);
-        setContentView(R.layout.activity_sigh_in);
+        setContentView(R.layout.sighup);
+        setContentView(R.layout.sighin);
         etEmail= findViewById(R.id.etEmail);
         etPassword=findViewById(R.id.etPassword);
 

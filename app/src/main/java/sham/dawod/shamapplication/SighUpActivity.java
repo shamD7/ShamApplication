@@ -21,7 +21,7 @@ public class SighUpActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sigh_up);
+        setContentView(R.layout.sighup);
         etEmail=(TextInputEditText) findViewById(R.id.etEmail);
         etPassword=(TextInputEditText)findViewById(R.id.etPassword);
         etRepassword=(TextInputEditText)findViewById(R.id.etRepassword);
