@@ -1,6 +1,8 @@
 package sham.dawod.shamapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,11 +18,14 @@ public class SplashScreen extends AppCompatActivity
 {
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         //456456456465
         setContentView(R.layout.splashscreen);
+
+
         Log.d("SD","onCreate" );
         Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
@@ -42,10 +47,23 @@ public class SplashScreen extends AppCompatActivity
              {
                  Log.d("sham",s.title);
                  Toast.makeText(this,s.title,Toast.LENGTH_LONG);
-            
-        }
+             }
+        //start next activity (screen) automatically  after period of time
 
-
+        Handler h=new Handler();
+        Runnable r=new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                //to open new activity from current to next
+                Intent i= new Intent(SplashScreen.this, SignInActivity.class);
+                startActivity(i);
+                //to close current activity
+                finish();
+            }
+        };
+        h.postDelayed(r,3000);
     }
 
     @Override

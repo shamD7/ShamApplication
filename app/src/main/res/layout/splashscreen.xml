@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="579dp"
             android:layout_marginStart="6dp"
             android:layout_marginTop="44dp"
             android:layout_marginEnd="6dp"
@@ -36,15 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/tassskkkkkkkkkk" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="236dp"
-            android:layout_height="76dp"
-            android:layout_gravity="center"
-            android:backgroundTint="#EC680E"
-            android:shadowColor="#ED750C"
-            android:text="NEXT" />
 
     </LinearLayout>
 
