@@ -15,6 +15,8 @@ public class SighUpActivity extends AppCompatActivity
     private TextInputEditText etName;
     private TextInputEditText etPhone;
     private Button btnSAVE;
+    private Button btnCancel;
+
 
 
     @Override
@@ -28,6 +30,7 @@ public class SighUpActivity extends AppCompatActivity
         etName=(TextInputEditText)findViewById(R.id.etName);
         etPhone=(TextInputEditText)findViewById(R.id.etPhone);
         btnSAVE=(Button) findViewById(R.id.btnSAVE);
+        btnCancel=(Button) findViewById(R.id.btnCancel);
 
     }
 }

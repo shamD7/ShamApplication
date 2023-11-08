@@ -48,7 +48,7 @@ public class SplashScreen extends AppCompatActivity
                  Log.d("sham",s.title);
                  Toast.makeText(this,s.title,Toast.LENGTH_LONG);
              }
-        //start next activity (screen) automatically  after period of time
+        //start next activity (screen) automatically after period of time
 
         Handler h=new Handler();
         Runnable r=new Runnable()
@@ -106,4 +106,5 @@ public class SplashScreen extends AppCompatActivity
         Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
 
     }
+
 }
