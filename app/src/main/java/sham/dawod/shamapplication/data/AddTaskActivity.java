@@ -12,7 +12,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import sham.dawod.shamapplication.R;
 
-public class AddTaskActivity1 extends AppCompatActivity {
+public class AddTaskActivity extends AppCompatActivity {
     private Button btnSaveTask;
     private Button btnCancelTask;
     private TextView tvImportance;
