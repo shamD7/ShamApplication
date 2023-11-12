@@ -1,4 +1,4 @@
-package sham.dawod.shamapplication;
+package sham.dawod.shamapplication.data;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import sham.dawod.shamapplication.R;
 
 public class AddTaskActivity1 extends AppCompatActivity {
     private Button btnSaveTask;
