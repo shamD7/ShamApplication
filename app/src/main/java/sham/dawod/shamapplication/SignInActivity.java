@@ -9,69 +9,85 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import sham.dawod.shamapplication.data.AppDatabase;
+import sham.dawod.shamapplication.data.usersTable.MyUser;
+import sham.dawod.shamapplication.data.usersTable.MyUserQuery;
 
-public class SignInActivity extends AppCompatActivity
-{
+
+public class SignInActivity extends AppCompatActivity {
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
     private Button btnSignIn;
     private Button btnSignUp;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sighin);
 
-        etEmail= findViewById(R.id.etEmail);
-        etPassword=findViewById(R.id.etPassword);
-        btnSignIn=findViewById(R.id.btnSignIn);
-        btnSignUp=findViewById(R.id.btnSignUp);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignUp = findViewById(R.id.btnSignUp);
 
     }
+
     /**
      * دالة لمعالجة حدث الضغط على كائن بمواجهة المستعمل.
      * على سبيل المثال ر للكائن الذي سبب الحدث
      */
 
-    public void onClickSIGNUP(View v)
-    {
-        Intent i= new Intent(SignInActivity.this, SighUpActivity.class);
+    public void onClickSIGNUP(View v) {
+        Intent i = new Intent(SignInActivity.this, SighUpActivity.class);
         startActivity(i);
         //to close current activity
         finish();
     }
-    private  void checkEmailPassw()
-    {
-        boolean isALLOK=true;// يحوي نتيجة فحص الحقول ان كانت سلمي
+
+    private void checkEmailPassw() {
+        boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
         //استخراج النص من حقل الايميل
-        String email=etEmail.getText().toString();
+        String email = etEmail.getText().toString();
         // استخراج نص كلمة المرور
-        String password =etPassword.getText().toString();
+        String password = etPassword.getText().toString();
         //فحص الايمل ان كان طوله اقل من 6 او لا يحوي @ فهو خطأ
-        if(email.length()<6 || email.contains("@")==false);
+        if (email.length() < 6 || email.contains("@") == false) ;
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل البريد
             etEmail.setError("Wrong Email");
         }
-        if(password.length()<8 || password.contains("")==true);
+        if (password.length() < 8 || password.contains("") == true) ;
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
             etEmail.setError("Wrong Password");
         }
-        if(isALLOK);
+        if (isALLOK) ;
         {
             Toast.makeText(this, "ALL OK ", Toast.LENGTH_SHORT).show();
+
+            //بناء قاعدة بيانات وارجاع المؤشر عليها
+            AppDatabase db = AppDatabase.getDB(getApplicationContext());
+            //مؤشر لكائن عمليات الجدول
+            MyUserQuery userQuery = db.getMyUserQuery();
+
+            // ان لم يكن موجود استدعاء العملبة التي تنفذ الاستعلام الذي يفحص البريد و كلمة المرور ويعيد كائنا ان كان موجود
+            MyUser myUse = userQuery.checkEmailPassw(email, password);
+            if (myUse == null) //هل لا يوجد كائن حسب الايمل والباسورد
+                Toast.makeText(this, "Wrong Email or Password", Toast.LENGTH_LONG).show();
+            else {
+                Intent i = new Intent(SignInActivity.this, MainActivity3.class);
+                startActivity(i);
+                //to close current activity
+                finish();
+            }
+
+
         }
 
-
-
-
-
     }
-
 }
+

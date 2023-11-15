@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import sham.dawod.shamapplication.data.AppDatabase;
+import sham.dawod.shamapplication.data.usersTable.MyUser;
+
 public class SighUpActivity extends AppCompatActivity
 {
     private TextInputEditText etEmail;
@@ -59,6 +62,23 @@ public class SighUpActivity extends AppCompatActivity
         if(isALLOK);
         {
             Toast.makeText(this, "ALL OK ", Toast.LENGTH_SHORT).show();
+            AppDatabase db =AppDatabase.getDB(getApplicationContext());
+
+            if(userQuery.checkEmail(email)!=null)
+            {
+                etEmail.setError("found email");
+
+
+            }
+            else
+            {
+                MyUser myUser=new MyUser();
+                myUser.fullName=name;
+                myUser.phone=phone;
+                myUser.passw=password;
+                myUser.email=email;
+                userQuery.insert((myUser));
+                finish();
         }
 
 
