@@ -44,7 +44,16 @@ public class SignInActivity extends AppCompatActivity {
         finish();
     }
 
-    private void checkEmailPassw() {
+    public void onClickSignIn (View v)
+    {
+        checkEmailPassw();
+
+    }
+
+
+
+
+        private void checkEmailPassw() {
         boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
         //استخراج النص من حقل الايميل
         String email = etEmail.getText().toString();

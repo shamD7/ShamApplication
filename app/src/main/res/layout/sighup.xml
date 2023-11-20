@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#EC680E"
+                android:onClick="onClickSave"
                 android:text="SAVE"
                 android:textSize="24dp" />
 

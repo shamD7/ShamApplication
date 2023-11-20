@@ -1,6 +1,7 @@
 package sham.dawod.shamapplication;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -37,6 +38,12 @@ public class SighUpActivity extends AppCompatActivity {
         btnCancel = (Button) findViewById(R.id.btnCancel);
 
     }
+    public void onClickSave(View v)
+    {
+        checkEmailPassw();
+
+    }
+
 
     private void checkEmailPassw() {
         boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
@@ -44,6 +51,8 @@ public class SighUpActivity extends AppCompatActivity {
         String email = etEmail.getText().toString();
         // استخراج نص كلمة المرور
         String password = etPassword.getText().toString();
+        // استخراج نص كلمة المرور
+        String repassword = etRepassword.getText().toString();
         // استخراج نص الاسم
 
         String name = etName.getText().toString();
@@ -51,28 +60,35 @@ public class SighUpActivity extends AppCompatActivity {
 
         String phone = etPhone.getText().toString();
         //فحص الايمل ان كان طوله اقل من 6 او لا يحوي @ فهو خطأ
-        if (email.length() < 6 || email.contains("@") == false) ;
+        if (email.length() < 6 || email.contains("@") == false)
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل البريد
             etEmail.setError("Wrong Email");
         }
-        if (password.length() < 8 || password.contains("") == true) ;
+        if (password.length() < 8 || password.contains(" ") == true)
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
-            etEmail.setError("Wrong Password");
+            etPassword.setError("Wrong Password");
         }
-        if (phone.length() < 9 || phone.length() > 9) ;
+        if (repassword.equals(password)==false)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
+            etRepassword.setError("Wrong re-Password");
+        }
+        if (phone.length() < 10 )
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل قم الهاتف
             etPhone.setError("Wrong Phone Number");
         }
-        if (name.length() < 1 ) ;
+        if (name.length() < 1 )
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
@@ -92,14 +108,15 @@ public class SighUpActivity extends AppCompatActivity {
                 etEmail.setError("found email");
 
 
-            } else {
+            } else
+            {
                 MyUser myUser = new MyUser();
                 myUser.fullName = name;
                 myUser.phone = phone;
                 myUser.passw = password;
                 myUser.email = email;
                 userQuery.insert((myUser));
-                finish();
+
             }
 
 
