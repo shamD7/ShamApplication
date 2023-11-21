@@ -104,7 +104,8 @@ public class SighUpActivity extends AppCompatActivity {
             MyUserQuery userQuery = db.getMyUserQuery();
 
 
-            if (userQuery.checkEmail(email) != null) {
+            if (userQuery.checkEmail(email) != null)
+            {
                 etEmail.setError("found email");
 
 

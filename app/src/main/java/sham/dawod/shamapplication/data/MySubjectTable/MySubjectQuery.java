@@ -47,6 +47,10 @@ public interface MySubjectQuery
     void deleteTask(long id );
 
 
+   @Query("SELECT * FROM MySubject WHERE email = :myEmail ")
+   void checkSubject( subject);
+
+
 
 
 

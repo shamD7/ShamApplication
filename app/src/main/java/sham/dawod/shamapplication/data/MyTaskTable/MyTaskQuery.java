@@ -6,6 +6,9 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
+
+import sham.dawod.shamapplication.data.usersTable.MyUser;
+
 /** واجهة استعلامات على جدول المعطيات*/
 @Dao
 public interface MyTaskQuery
@@ -65,6 +68,7 @@ public interface MyTaskQuery
 
     @Query("DELETE FROM MyTask WHERE keyid=:id")
     void deleteTask(long id );
+
 
 
 

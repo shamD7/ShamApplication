@@ -72,7 +72,7 @@ public class SignInActivity extends AppCompatActivity {
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
-            etEmail.setError("Wrong Password");
+            etPassword.setError("Wrong Password");
         }
         if (isALLOK) ;
         {

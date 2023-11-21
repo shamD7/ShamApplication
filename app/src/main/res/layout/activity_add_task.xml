@@ -32,21 +32,29 @@
                 android:layout_weight="1"
                 android:background="#EC680E"
                 android:text="CANCEL" />
-        </LinearLayout>
 
-        <SeekBar
-            android:id="@+id/skbrImportance"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="10"
-            android:progress="3" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvImportance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Importance" />
+            android:text="Importance"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/skbrImportance"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:max="5"
+            android:progress="1" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoEtSubj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AutoCompleteTextView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
