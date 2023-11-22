@@ -69,16 +69,25 @@ public class AddTaskActivity extends AppCompatActivity
     }
     private void checkAndSaveTask()
     {
-        boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
+        boolean isALLOK = true;//t يحوي نتيجة فحص الحقول ان كانت سلمي
+        String subjText =etShortTitle.getText().toString();
+        String autoSubj=autoEtSubj.getText().toString();
+        String skbrlmportance=skbrlmportance.getText().toString();
 
-        s
 
-        if(isALLOK){
+
+        if(isALLOK)
+        {
+
+
 
             AppDatabase db = AppDatabase.getDB(getApplicationContext());
             MySubjectQuery subjectQuery = db.getMySubjectQuery();
             if (subjectQuery.checkSubject(subjText)==null)
-            {
+            { //بناء موضوع جديد واضافته
+                MySubject subject = new MySubject();
+                subject.title=subjText;
+                subjectQuery.insertAll(subject);
 
 
 
