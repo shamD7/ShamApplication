@@ -17,6 +17,8 @@ public class MyTask
     public int importance;
     /**نص المهمة*/
     public String text;
+    /**عنوان المهمة*/
+    public String shortTitle;
     /**رقم موضوع المهمة*/
     public long subjId;
     /**رقم المستعمل الذي اضاف المهمة*/

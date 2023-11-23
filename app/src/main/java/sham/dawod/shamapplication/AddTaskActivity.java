@@ -17,23 +17,33 @@ import java.util.List;
 import sham.dawod.shamapplication.data.AppDatabase;
 import sham.dawod.shamapplication.data.MySubjectTable.MySubject;
 import sham.dawod.shamapplication.data.MySubjectTable.MySubjectQuery;
+import sham.dawod.shamapplication.data.MyTaskTable.MyTask;
 import sham.dawod.shamapplication.data.usersTable.MyUserQuery;
 
 public class AddTaskActivity extends AppCompatActivity
 {
     private Button btnSaveTask;
     private Button btnCancelTask;
-    private TextView tvlmportance;
-    private SeekBar skbrlmportance;
+    private TextView tvImportance;
+    private SeekBar skbrImportance;
     private TextInputEditText etShortTitle;
     private AutoCompleteTextView autoEtSubj;
+    private TextInputEditText etText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         autoEtSubj=findViewById(R.id.autoEtSubj);
-        initAutoEtSublects();
+        etShortTitle=findViewById(R.id.etShortTitle);
+        btnCancelTask=findViewById(R.id.btnCancelTask);
+        btnSaveTask=findViewById(R.id.btnSaveTask);
+        tvImportance=findViewById(R.id.tvImportance);
+        skbrImportance=findViewById(R.id.skbrImportance);
+        etText=findViewById(R.id.etText);
+
+        initAutoEtSubjects();
 
     }
     /**
@@ -41,8 +51,7 @@ public class AddTaskActivity extends AppCompatActivity
      * AutoCompleteTextView
      * طريقة التعامل معه شبيه بالسبنر
      */
-    private void initAutoEtSublects
-
+    private void initAutoEtSubjects()
     {
         //مؤشر لقاعدة البيانات
         AppDatabase db = AppDatabase.getDB(getApplicationContext());
@@ -58,12 +67,12 @@ public class AddTaskActivity extends AppCompatActivity
         autoEtSubj.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                autoEtSubj.showDropDown();
 
             }
         });
-
-
 
 
     }
@@ -72,8 +81,9 @@ public class AddTaskActivity extends AppCompatActivity
         boolean isALLOK = true;//t يحوي نتيجة فحص الحقول ان كانت سلمي
         String subjText =etShortTitle.getText().toString();
         String autoSubj=autoEtSubj.getText().toString();
-        String skbrlmportance=skbrlmportance.getText().toString();
-
+        int lmportance=skbrImportance.getProgress();
+        String ImportanceT=tvImportance.getText().toString();
+        String textTask=tvImportance.getText().toString();
 
 
         if(isALLOK)
@@ -89,9 +99,17 @@ public class AddTaskActivity extends AppCompatActivity
                 subject.title=subjText;
                 subjectQuery.insertAll(subject);
 
-
-
             }
+            // id استخراج الموضوع لاننا بحاجة لرقمه التسلسلي
+            MySubject subject=subjectQuery.checkSubject(subjText);
+            //بناء مهمة جديد وتحديد صفاتها
+            MyTask task=new MyTask();
+            task.importance=lmportance;
+            task.text=textTask;
+            task.shortTitle=subjText;
+            task.subjId=subject.key_id; //تحديد رقم الموضوع للمهمة
+            db.getMyTaskQuery().insertAll(task);//اضافة مهمة للجدول
+            finish();
 
 
 
