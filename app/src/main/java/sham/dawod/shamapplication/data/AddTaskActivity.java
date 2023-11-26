@@ -24,7 +24,7 @@ public class AddTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addtask);
+        setContentView(R.layout.activity_add_task);
         btnSaveTask = findViewById(R.id.btnSaveTask);
         btnCancelTask = findViewById(R.id.btnCancelTask);
         tvImportance = findViewById(R.id.tvImportance);
