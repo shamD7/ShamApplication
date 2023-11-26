@@ -1,9 +1,15 @@
 package sham.dawod.shamapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import sham.dawod.shamapplication.R;
 
@@ -26,6 +32,33 @@ public class MainActivity3 extends AppCompatActivity {
         adapter.addAll(ar);
         //spnr6 ربط الكائن المرئي بالوسيط
         spnrSubject.setAdapter(adapter);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == R.id.itemSettings)
+        {
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+
+        }
+        if (item.getItemId() == R.id.itemSignOut)
+        {
+            Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+
+        }
+        if (item.getItemId()==R.id.ItemAddTask)
+        {
+            Intent i = new Intent(MainActivity3.this, AddTaskActivity.class);
+            startActivity(i);
+        }
+        return true;
+
     }
 
 }

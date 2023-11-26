@@ -1,10 +1,14 @@
 package sham.dawod.shamapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -122,6 +126,33 @@ public class SighUpActivity extends AppCompatActivity {
 
 
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == R.id.itemSettings)
+        {
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+
+        }
+        if (item.getItemId() == R.id.itemSignOut)
+        {
+            Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+
+        }
+        if (item.getItemId()==R.id.ItemAddTask)
+        {
+            Intent i = new Intent(SighUpActivity.this, AddTaskActivity.class);
+            startActivity(i);
+        }
+        return true;
+
     }
 }
 

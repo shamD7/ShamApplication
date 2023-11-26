@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -107,7 +109,8 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
         if (item.getItemId() == R.id.itemSettings)
         {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
@@ -118,9 +121,30 @@ public class SplashScreen extends AppCompatActivity {
             Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
 
         }
+        if (item.getItemId()==R.id.ItemAddTask)
+        {
+            Intent i = new Intent(SplashScreen.this, AddTaskActivity.class);
+            startActivity(i);
+        }
         return true;
 
     }
+    /**
+     * دالة مساعدة لفتح قائمة تتلقى بارمترا للكائن الذي سبب فتح القائمة
+     */
+    public void showMenu(View v)
+    {
+        //بناء قائمة popup menu
+        PopupMenu popup= new PopupMenu(this,v);        // الكائن الذي سبب فتح القائمة
+        // ملف القائمة
+        popup.inflate(R.menu.main_menu);
+        popup.show();
+
+
+
+    }
+
+
 }
 
 

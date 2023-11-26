@@ -1,14 +1,19 @@
 package sham.dawod.shamapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -116,6 +121,47 @@ public class AddTaskActivity extends AppCompatActivity
         }
 
     }
+
+
+
+
+
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        if (item.getItemId() == R.id.itemSettings)
+        {
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+
+        }
+        if (item.getItemId() == R.id.itemSignOut)
+        {
+            Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+
+        }
+        if (item.getItemId()==R.id.ItemAddTask)
+        {
+            Intent i = new Intent(AddTaskActivity.this, AddTaskActivity.class);
+            startActivity(i);
+        }
+        return true;
+
+    }
+
+
+
+
+
+
+
+
 
 
 }

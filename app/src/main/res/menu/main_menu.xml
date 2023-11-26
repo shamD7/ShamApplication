@@ -13,4 +13,7 @@
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="History"
         app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/ItemAddTask"
+        android:title="AddTask" />
 </menu>
