@@ -125,10 +125,8 @@ public class AddTaskActivity extends AppCompatActivity
 
 
 
-
-
-
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
