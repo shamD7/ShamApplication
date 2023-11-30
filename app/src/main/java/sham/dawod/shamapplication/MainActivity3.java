@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -26,6 +29,9 @@ public class MainActivity3 extends AppCompatActivity {
 //spnr1 تعريف لصفة الكائن المرئي
     private Spinner spnrSubject;
     private ListView lstvTasks;
+    private ImageButton IbtnAdd;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,6 +50,21 @@ public class MainActivity3 extends AppCompatActivity {
         //spnr6 ربط الكائن المرئي بالوسيط
         spnrSubject.setAdapter(adapter);
         lstvTasks=findViewById(R.id.lstvTasks);
+        IbtnAdd=findViewById(R.id.IbtnAdd);
+        IbtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(MainActivity3.this, AddTaskActivity.class);
+                startActivity(i);
+
+
+
+
+
+
+            }
+        });
 
     }
     @Override
@@ -99,7 +120,35 @@ public class MainActivity3 extends AppCompatActivity {
                 SubjectAdapter.addAll(subject.title);
             }
 
-            spnrSubject.setAdapter(SubjectAdapter);//ربط السبنر بالوسيط 
+            spnrSubject.setAdapter(SubjectAdapter);// ربط السبنر بالوسيط
+            spnrSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+                {
+                    // استخراج الموضوع حسب رقمه الترتيبي i
+                    String item =SubjectAdapter.getItem(i);
+                    if(item.equals("ALL"))//هذا يعني اعترض جميع المهام
+                    {
+                        initAllListView();
+                    }
+                    else {
+                        //استخراج كائن الموضوع الذي اخترناه لاسنخراج رقمه id
+                        MySubject subject=subjectQuery.checkSubject(item);
+                        //استدعاء العملية التي تجهز القائمة حسب رقم الموضوع
+                        initListViewBySubjId(subject.key_id);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView)
+                {
+
+
+                }
+            });
+
+
+
 
     }
     private void initAllListView()
@@ -108,11 +157,24 @@ public class MainActivity3 extends AppCompatActivity {
         AppDatabase db=AppDatabase.getDB(getApplicationContext());// قاعدة بناء
         MyTaskQuery taskQuery=db.getMyTaskQuery();
         List<MyTask> allTasks=taskQuery.getAllTask();
-        ArrayAdapter <String>TaskAdapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
+        ArrayAdapter<MyTask>TaskAdapter=new ArrayAdapter<MyTask>(getApplicationContext(),android.R.layout.simple_dropdown_item_1line);
 
         TaskAdapter.addAll(allTasks);
         lstvTasks.setAdapter(TaskAdapter);
 
     }
+    private void initListViewBySubjId(long key_id)
+    {
+        AppDatabase db=AppDatabase.getDB(getApplicationContext());
+        MyTaskQuery taskQuery=db.getMyTaskQuery();
+        // جب اضافة عملية تعيد جميع المهمات حسب رقم الموضوع
+        List<MyTask> allTasks =taskQuery.getTasksBySubjId(key_id);
+        ArrayAdapter <MyTask>TaskAdapter=new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
+        TaskAdapter.addAll(allTasks);
+        lstvTasks.setAdapter(TaskAdapter);
+
+    }
+
+
 
 }

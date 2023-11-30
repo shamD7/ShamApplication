@@ -54,7 +54,8 @@
             android:id="@+id/autoEtSubj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AutoCompleteTextView" />
+            android:text="AutoCompleteTextView"
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -64,7 +65,8 @@
                 android:id="@+id/etShortTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Short Title" />
+                android:hint="Short Title"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +77,8 @@
                 android:id="@+id/etText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Text" />
+                android:hint="Text"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
