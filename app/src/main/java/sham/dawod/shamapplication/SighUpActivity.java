@@ -49,6 +49,7 @@ public class SighUpActivity extends AppCompatActivity {
     }
 
 
+
     private void checkEmailPassw() {
         boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
         //استخراج النص من حقل الايميل

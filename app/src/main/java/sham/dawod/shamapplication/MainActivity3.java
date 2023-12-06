@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -57,11 +58,6 @@ public class MainActivity3 extends AppCompatActivity {
             {
                 Intent i = new Intent(MainActivity3.this, AddTaskActivity.class);
                 startActivity(i);
-
-
-
-
-
 
             }
         });
@@ -123,19 +119,18 @@ public class MainActivity3 extends AppCompatActivity {
             spnrSubject.setAdapter(SubjectAdapter);// ربط السبنر بالوسيط
             spnrSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-                {
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     // استخراج الموضوع حسب رقمه الترتيبي i
-                    String item =SubjectAdapter.getItem(i);
-                    if(item.equals("ALL"))//هذا يعني اعترض جميع المهام
+                    String item = SubjectAdapter.getItem(i);
+                    if (item.equals("ALL"))//هذا يعني اعترض جميع المهام
                     {
                         initAllListView();
-                    }
-                    else {
+                    } else {
                         //استخراج كائن الموضوع الذي اخترناه لاسنخراج رقمه id
-                        MySubject subject=subjectQuery.checkSubject(item);
+                        MySubject subject = subjectQuery.checkSubject(item);
                         //استدعاء العملية التي تجهز القائمة حسب رقم الموضوع
                         initListViewBySubjId(subject.key_id);
+
                     }
                 }
 
@@ -151,17 +146,23 @@ public class MainActivity3 extends AppCompatActivity {
 
 
     }
-    private void initAllListView()
-    {
+    private void initAllListView() {
 
-        AppDatabase db=AppDatabase.getDB(getApplicationContext());// قاعدة بناء
-        MyTaskQuery taskQuery=db.getMyTaskQuery();
-        List<MyTask> allTasks=taskQuery.getAllTask();
-        ArrayAdapter<MyTask>TaskAdapter=new ArrayAdapter<MyTask>(getApplicationContext(),android.R.layout.simple_dropdown_item_1line);
+        AppDatabase db = AppDatabase.getDB(getApplicationContext());// قاعدة بناء
+        MyTaskQuery taskQuery = db.getMyTaskQuery();
+        List<MyTask> allTasks = taskQuery.getAllTask();
+        ArrayAdapter<MyTask> TaskAdapter = new ArrayAdapter<MyTask>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
 
         TaskAdapter.addAll(allTasks);
         lstvTasks.setAdapter(TaskAdapter);
+        lstvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                showPopUpMenu(view,TaskAdapter.getItem(i));
 
+            }
+        });
     }
     private void initListViewBySubjId(long key_id)
     {
@@ -174,6 +175,40 @@ public class MainActivity3 extends AppCompatActivity {
         lstvTasks.setAdapter(TaskAdapter);
 
     }
+    public void showPopUpMenu(View v,MyTask item)
+    {
+        //بناء قائمة popup menu
+        PopupMenu popup=new PopupMenu(this,v);//لكائن الذي سبب فتح القائمة
+        //ملف القائمة
+        popup.inflate(R.menu.popup_menu);
+        //اضافة معالج حدث لاختيار عنصر من القائمة
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.ItemAddTask) {
+                    //
+                    Toast.makeText(MainActivity3.this, "Add", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity3.this, AddTaskActivity.class);
+                    startActivity(i);
+                }
+                if (menuItem.getItemId() == R.id.itmDelete) {
+                    Toast.makeText(MainActivity3.this, "Delete", Toast.LENGTH_SHORT).show();
+
+                }
+                if (menuItem.getItemId() == R.id.itmEdit) {
+                    Toast.makeText(MainActivity3.this, "Edit", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+
+            }
+
+        });
+        popup.show();//فتح وعرض القائمة
+
+    }
+
+
+
 
 
 

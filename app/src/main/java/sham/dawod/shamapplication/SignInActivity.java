@@ -46,12 +46,19 @@ public class SignInActivity extends AppCompatActivity {
         //to close current activity
         finish();
     }
+    public void onClickSIGNIn(View v) {
+        Intent i = new Intent(SignInActivity.this, MainActivity3.class);
+        startActivity(i);
+        //to close current activity
+        finish();
+    }
 
     public void onClickSignIn (View v)
     {
         checkEmailPassw();
 
     }
+
 
 
 
