@@ -82,6 +82,10 @@ public class AddTaskActivity extends AppCompatActivity
 
 
     }
+    public  void onClickSaveTask(View v)
+    {
+        checkAndSaveTask();
+    }
     private void checkAndSaveTask()
     {
         boolean isALLOK = true;//t يحوي نتيجة فحص الحقول ان كانت سلمي
@@ -151,6 +155,15 @@ public class AddTaskActivity extends AppCompatActivity
             startActivity(i);
         }
         return true;
+    }
+    public void onClickCancel(View v)
+    {
+        //to open new activity from current to next
+        Intent i = new Intent(AddTaskActivity.this, MainActivity3.class);
+        startActivity(i);
+        //to close current activity
+        finish();
+
     }
 
 

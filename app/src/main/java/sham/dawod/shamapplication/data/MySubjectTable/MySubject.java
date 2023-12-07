@@ -18,9 +18,7 @@ public class MySubject
 
     @Override
     public String toString() {
-        return "MySubject{" +
-                "title='" + title + '\'' +
-                '}';
+        return title ;
     }
 
 

@@ -47,6 +47,16 @@ public class SighUpActivity extends AppCompatActivity {
         checkEmailPassw();
 
     }
+    private void onClickCancel(View v)
+    {
+        Intent i = new Intent(SighUpActivity.this, SignInActivity.class);
+        startActivity(i);
+        //to close current activity
+        finish();
+    }
+
+
+
 
 
 

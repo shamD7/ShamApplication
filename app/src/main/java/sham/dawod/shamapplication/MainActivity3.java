@@ -96,6 +96,9 @@ public class MainActivity3 extends AppCompatActivity {
     {
         super.onResume();
         initSubjectSpnr();
+        initAllListView();
+
+
     }
 
     /**

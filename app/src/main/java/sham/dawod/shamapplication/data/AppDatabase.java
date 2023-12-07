@@ -17,7 +17,7 @@ import sham.dawod.shamapplication.data.usersTable.MyUserQuery;
 version
 ند تغيير اي شيء يخص الجداول او دوال علينا تغيير رقم الاصدار ليتم بناء قاعدة البيانات من جديد
  */
-@Database(entities = {MyUser.class, MySubject.class, MyTask.class},version = 1)
+@Database(entities = {MyUser.class, MySubject.class, MyTask.class},version = 2)
 /**
  * الفئة المسؤولة عن بناء قاعدة البيانات بكل جداولها وتوفر لنا كائن للتعامل مع قاعدة البيانات
  */

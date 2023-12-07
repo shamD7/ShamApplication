@@ -33,7 +33,7 @@ public class MyTask
         return "MyTask{" +
                 "keyid=" + keyid +
                 ", importance=" + importance +
-                ", text='" + text + '\'' +
+                ", text='" + text + '\n' +
                 ", subjId=" + subjId +
                 ", userId=" + userId +
                 ", time=" + time +

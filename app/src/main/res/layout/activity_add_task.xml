@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvTaskSubject"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddTaskActivity">
@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#EC680E"
+                android:onClick="onClickSaveTask"
                 android:text="Save" />
 
             <Button
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#EC680E"
+                android:onClick="onClickCancel"
                 android:text="CANCEL" />
 
         </LinearLayout>
@@ -54,7 +56,7 @@
             android:id="@+id/autoEtSubj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AutoCompleteTextView"
+            android:text="Task Subject"
             android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout

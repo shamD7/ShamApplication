@@ -46,12 +46,6 @@ public class SignInActivity extends AppCompatActivity {
         //to close current activity
         finish();
     }
-    public void onClickSIGNIn(View v) {
-        Intent i = new Intent(SignInActivity.this, MainActivity3.class);
-        startActivity(i);
-        //to close current activity
-        finish();
-    }
 
     public void onClickSignIn (View v)
     {
@@ -70,21 +64,21 @@ public class SignInActivity extends AppCompatActivity {
         // استخراج نص كلمة المرور
         String password = etPassword.getText().toString();
         //فحص الايمل ان كان طوله اقل من 6 او لا يحوي @ فهو خطأ
-        if (email.length() < 6 || email.contains("@") == false) ;
+        if (email.length() < 6 || email.contains("@") == false)
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل البريد
             etEmail.setError("Wrong Email");
         }
-        if (password.length() < 8 || password.contains("") == true) ;
+        if (password.length() < 8 || password.contains(" ") == true)
         // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
         {
             isALLOK = false;
             //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
             etPassword.setError("Wrong Password");
         }
-        if (isALLOK) ;
+        if (isALLOK)
         {
             Toast.makeText(this, "ALL OK ", Toast.LENGTH_SHORT).show();
 
