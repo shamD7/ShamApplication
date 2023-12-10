@@ -1,8 +1,10 @@
 package sham.dawod.shamapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -209,6 +211,30 @@ public class MainActivity3 extends AppCompatActivity {
         popup.show();//فتح وعرض القائمة
 
     }
+    /**
+     * بناء ديالوج
+     */
+    public void showYesNoDialig()
+    {
+        //جهيز بناء شباك حوار بارمتر مؤشر للنشاط الحالي
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Log out");//تحديد العنوان
+        builder.setMessage("Are you sure?");//تحدي فحوى شباك الحوار
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                //
+                
+
+            }
+        });
+        AlertDialog dialog=builder.create();//بناء شباك الحوار
+        dialog.show();//عرض الشباك
+    }
+
+
+
 
 
 
