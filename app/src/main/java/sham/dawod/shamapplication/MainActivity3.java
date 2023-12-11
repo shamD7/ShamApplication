@@ -78,10 +78,12 @@ public class MainActivity3 extends AppCompatActivity {
         {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
 
+
         }
         if (item.getItemId() == R.id.itemSignOut)
         {
             Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+            showYesNoDialig();
 
         }
         if (item.getItemId()==R.id.ItemAddTask)
@@ -108,19 +110,16 @@ public class MainActivity3 extends AppCompatActivity {
      */
     private void initSubjectSpnr()
         {
-
             AppDatabase db=AppDatabase.getDB(getApplicationContext());// قاعدة بناء
             MySubjectQuery subjectQuery=db.getMySubjectQuery();//  عمليات جدول المواضيع
             List<MySubject> allSubjects=subjectQuery.getAllSubject();// استخراج// جميع المواضيع
             // قاعدة بناء
             ArrayAdapter <String> SubjectAdapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
-
             SubjectAdapter.add("ALL");//ستظهر اولا بالسبنر تعني عرض جميع المهمات
             for (MySubject subject:allSubjects)//  اضافة المواضبع للوسيط
             {
                 SubjectAdapter.addAll(subject.title);
             }
-
             spnrSubject.setAdapter(SubjectAdapter);// ربط السبنر بالوسيط
             spnrSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -135,10 +134,8 @@ public class MainActivity3 extends AppCompatActivity {
                         MySubject subject = subjectQuery.checkSubject(item);
                         //استدعاء العملية التي تجهز القائمة حسب رقم الموضوع
                         initListViewBySubjId(subject.key_id);
-
                     }
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView)
                 {
@@ -147,17 +144,12 @@ public class MainActivity3 extends AppCompatActivity {
                 }
             });
 
-
-
-
     }
     private void initAllListView() {
-
         AppDatabase db = AppDatabase.getDB(getApplicationContext());// قاعدة بناء
         MyTaskQuery taskQuery = db.getMyTaskQuery();
         List<MyTask> allTasks = taskQuery.getAllTask();
         ArrayAdapter<MyTask> TaskAdapter = new ArrayAdapter<MyTask>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line);
-
         TaskAdapter.addAll(allTasks);
         lstvTasks.setAdapter(TaskAdapter);
         lstvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -220,13 +212,25 @@ public class MainActivity3 extends AppCompatActivity {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("Log out");//تحديد العنوان
         builder.setMessage("Are you sure?");//تحدي فحوى شباك الحوار
+        //النض على الزر ومعالج الحدث
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                //
-                
+                //معالجة حدث للموافقة
+                Toast.makeText(MainActivity3.this, "Signing out", Toast.LENGTH_SHORT).show();
+                finish();
 
+
+            }
+        });
+        //النض على الزر ومعالج الحدث
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //معالجة حدث للموافقة
+                Toast.makeText(MainActivity3.this, "Signing out", Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog dialog=builder.create();//بناء شباك الحوار

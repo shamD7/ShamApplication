@@ -1,8 +1,10 @@
 package sham.dawod.shamapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,7 +51,7 @@ public class AddTaskActivity extends AppCompatActivity
         skbrImportance=findViewById(R.id.skbrImportance);
         etText=findViewById(R.id.etText);
 
-        initAutoEtSubjects();
+        initAutoEtSubjects();//دالة لاستخراج القيم وعرضها بالحقل السابق
 
     }
     /**
@@ -99,11 +101,9 @@ public class AddTaskActivity extends AppCompatActivity
         if(isALLOK)
         {
 
-
-
             AppDatabase db = AppDatabase.getDB(getApplicationContext());
             MySubjectQuery subjectQuery = db.getMySubjectQuery();
-            if (subjectQuery.checkSubject(subjText)==null)
+            if (subjectQuery.checkSubject(subjText)==null)//فحص هل الموضوع موجود في الجدول من قبل
             { //بناء موضوع جديد واضافته
                 MySubject subject = new MySubject();
                 subject.title=subjText;
@@ -120,8 +120,6 @@ public class AddTaskActivity extends AppCompatActivity
             task.subjId=subject.key_id; //تحديد رقم الموضوع للمهمة
             db.getMyTaskQuery().insertAll(task);//اضافة مهمة للجدول
             finish();
-
-
 
         }
 
@@ -147,6 +145,7 @@ public class AddTaskActivity extends AppCompatActivity
         if (item.getItemId() == R.id.itemSignOut)
         {
             Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+            showYesNoDialig();
 
         }
         if (item.getItemId()==R.id.ItemAddTask)
@@ -164,6 +163,37 @@ public class AddTaskActivity extends AppCompatActivity
         //to close current activity
         finish();
 
+    }
+
+    public void showYesNoDialig()
+    {
+        //جهيز بناء شباك حوار بارمتر مؤشر للنشاط الحالي
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Log out");//تحديد العنوان
+        builder.setMessage("Are you sure?");//تحدي فحوى شباك الحوار
+        //النض على الزر ومعالج الحدث
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                //معالجة حدث للموافقة
+                Toast.makeText(AddTaskActivity.this, "Signing out", Toast.LENGTH_SHORT).show();
+                finish();
+
+
+            }
+        });
+        //النض على الزر ومعالج الحدث
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //معالجة حدث للموافقة
+                Toast.makeText(AddTaskActivity.this, "Signing out", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog dialog=builder.create();//بناء شباك الحوار
+        dialog.show();//عرض الشباك
     }
 
 

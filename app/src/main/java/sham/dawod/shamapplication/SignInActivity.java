@@ -1,4 +1,5 @@
 package sham.dawod.shamapplication;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,7 +43,7 @@ public class SignInActivity extends AppCompatActivity {
      */
 
     public void onClickSIGNUP(View v) {
-        Intent i = new Intent(SignInActivity.this, SighUpActivity.class);
+        Intent i = new Intent(SignInActivity.this, SignUpActivity.class);
         startActivity(i);
         //to close current activity
         finish();
@@ -52,10 +54,6 @@ public class SignInActivity extends AppCompatActivity {
         checkEmailPassw();
 
     }
-
-
-
-
 
         private void checkEmailPassw() {
         boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
@@ -91,7 +89,9 @@ public class SignInActivity extends AppCompatActivity {
             MyUser myUse = userQuery.checkEmailPassw(email, password);
             if (myUse == null) //هل لا يوجد كائن حسب الايمل والباسورد
                 Toast.makeText(this, "Wrong Email or Password", Toast.LENGTH_LONG).show();
-            else {
+            else
+            {
+                // ان كان هنالك حساب حساب الايميل والباسورد ننتقل الى الشاشة الرئيسية
                 Intent i = new Intent(SignInActivity.this, MainActivity3.class);
                 startActivity(i);
                 //to close current activity
@@ -119,6 +119,7 @@ public class SignInActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.itemSignOut)
         {
             Toast.makeText(this, "SignOut", Toast.LENGTH_SHORT).show();
+            showYesNoDialig();
 
         }
         if (item.getItemId()==R.id.ItemAddTask)
@@ -128,6 +129,36 @@ public class SignInActivity extends AppCompatActivity {
         }
         return true;
 
+    }
+    public void showYesNoDialig()
+    {
+        //جهيز بناء شباك حوار بارمتر مؤشر للنشاط الحالي
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Log out");//تحديد العنوان
+        builder.setMessage("Are you sure?");//تحدي فحوى شباك الحوار
+        //النض على الزر ومعالج الحدث
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                //معالجة حدث للموافقة
+                Toast.makeText(SignInActivity.this, "Signing out", Toast.LENGTH_SHORT).show();
+                finish();
+
+
+            }
+        });
+        //النض على الزر ومعالج الحدث
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //معالجة حدث للموافقة
+                Toast.makeText(SignInActivity.this, "Signing out", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog dialog=builder.create();//بناء شباك الحوار
+        dialog.show();//عرض الشباك
     }
 }
 
