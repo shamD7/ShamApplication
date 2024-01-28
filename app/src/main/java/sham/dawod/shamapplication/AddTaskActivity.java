@@ -86,6 +86,7 @@ public class AddTaskActivity extends AppCompatActivity
     }
     public  void onClickSaveTask(View v)
     {
+
         checkAndSaveTask();
     }
     private void checkAndSaveTask()
