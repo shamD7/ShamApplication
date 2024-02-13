@@ -1,5 +1,6 @@
 package sham.dawod.shamapplication;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import sham.dawod.shamapplication.data.AppDatabase;
 import sham.dawod.shamapplication.data.usersTable.MyUser;
@@ -44,8 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
     public void onClickSave(View v)
     {
-        checkEmailPassw();
-
+        checkAndSignUP_FB();
     }
     private void onClickCancel(View v)
     {
@@ -57,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-    private void checkEmailPassw() {
+    private void checkAndSignUP() {
         boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
         //استخراج النص من حقل الايميل
         String email = etEmail.getText().toString();
@@ -109,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
 
-        if (isALLOK) ;
+        if (isALLOK)
         {
             Toast.makeText(this, "ALL OK ", Toast.LENGTH_SHORT).show();
             AppDatabase db = AppDatabase.getDB(getApplicationContext());
@@ -198,6 +202,95 @@ public class SignUpActivity extends AppCompatActivity {
         dialog.show();//عرض الشباك
     }
 
-}
+    private void checkAndSignUP_FB()
+
+    {
+        boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
+        //استخراج النص من حقل الايميل
+
+        //استخراج النص من حقل الايميل
+        String email = etEmail.getText().toString();
+        // استخراج نص كلمة المرور
+        String password = etPassword.getText().toString();
+        // استخراج نص كلمة المرور
+        String repassword = etRepassword.getText().toString();
+        // استخراج نص الاسم
+
+        String name = etName.getText().toString();
+        // استخراج نص رقم الهاتف
+
+        String phone = etPhone.getText().toString();
+        //فحص الايمل ان كان طوله اقل من 6 او لا يحوي @ فهو خطأ
+        if (email.length() < 6 || email.contains("@") == false)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل البريد
+            etEmail.setError("Wrong Email");
+        }
+        if (password.length() < 8 || password.contains(" ") == true)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
+            etPassword.setError("Wrong Password");
+        }
+        if (repassword.equals(password) == false)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
+            etRepassword.setError("Wrong re-Password");
+        }
+        if (phone.length() < 10)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل قم الهاتف
+            etPhone.setError("Wrong Phone Number");
+        }
+        if (name.length() < 1)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل الاسم
+            etName.setError("Wrong Name");
+        }
+
+
+        if (isALLOK) {
+            //كائن لعملية التسجيل
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            //انشاء حساب بمساعدة الايميل وكلمة المرور
+            Task<AuthResult> authResultTask = auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignUpActivity.this, "Signing up Succeeded ", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Signing up Failed", Toast.LENGTH_SHORT).show();
+                        etEmail.setError(task.getException().getMessage());// عرض رسالة الغلط
+
+                    }
+
+
+                }
+
+            });
+
+
+            }
+        }
+
+
+
+
+
+
+
+        }
+
+
 
 

@@ -12,7 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import sham.dawod.shamapplication.data.AppDatabase;
 import sham.dawod.shamapplication.data.usersTable.MyUser;
@@ -140,9 +144,11 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
+                FirebaseAuth.getInstance().signOut();
                 //معالجة حدث للموافقة
                 Toast.makeText(SignInActivity.this, "Signing out", Toast.LENGTH_SHORT).show();
                 finish();
+
 
 
             }
@@ -158,6 +164,59 @@ public class SignInActivity extends AppCompatActivity {
         });
         AlertDialog dialog=builder.create();//بناء شباك الحوار
         dialog.show();//عرض الشباك
+    }
+
+    private void checkEmailPassw_FB() {
+        boolean isALLOK = true;// يحوي نتيجة فحص الحقول ان كانت سلمي
+        //استخراج النص من حقل الايميل
+        String email = etEmail.getText().toString();
+        // استخراج نص كلمة المرور
+        String password = etPassword.getText().toString();
+        //فحص الايمل ان كان طوله اقل من 6 او لا يحوي @ فهو خطأ
+        if (email.length() < 6 || email.contains("@") == false)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل البريد
+            etEmail.setError("Wrong Email");
+        }
+        if (password.length() < 8 || password.contains(" ") == true)
+        // تعديل المتغير ليدل على ان الفحص يعطي نتيجة خاطئة
+        {
+            isALLOK = false;
+            //عرض ملاحظة خطأ على الشاشة داخل حقل لمة المرور
+            etPassword.setError("Wrong Password");
+        }
+        if (isALLOK)
+        {
+            //كائن لعملية التسجيل
+            FirebaseAuth auth=FirebaseAuth.getInstance();
+            //لدخول للحساب بمساعدة الايميل وكلمة المرور
+            auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override//התגובה שמתקבל מהענן הכניסה בענן
+                public void onComplete(@NonNull Task<AuthResult> task)
+                {
+                    if(task.isSuccessful()){//אם הפעולה הצליחה
+                        Toast.makeText(SignInActivity.this, "Signing in", Toast.LENGTH_SHORT).show();
+                        //מעבר למסך הראשי
+                        Intent i = new Intent(SignInActivity.this,MainActivity3.class);
+                        startActivity(i);
+                    }
+                    else {
+                        Toast.makeText(SignInActivity.this, "Signing in Failed", Toast.LENGTH_SHORT).show();
+                        etEmail.setError(task.getException().getMessage());//הצגת הודעת השגיה שהקבלה מהענן
+                    }
+
+
+
+                }
+            });
+
+
+
+
+        }
+
     }
 }
 
